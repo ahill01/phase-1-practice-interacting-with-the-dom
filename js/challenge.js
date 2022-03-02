@@ -1,6 +1,7 @@
 
 
 const counter = document.querySelector("#counter");
+counter.likes = 0;
 let num = parseInt(counter.innerText,10);
 let paused = false;
 const commentText = document.querySelector("#comment-input");
@@ -19,7 +20,7 @@ function count(num){
     }
 };
 
-setTimeout(count(num),700);
+//setTimeout(count(num),700);
 
 //pause button
 //disables everything else 
@@ -70,13 +71,16 @@ minusBttn.addEventListener("click",(e) => {
 likesBttn.addEventListener("click",e => addLikes(e)); 
 
 function addLikes(e){
-    let numLikes = 0
-    console.log("likes clicked")
-    numLikes++;
+    const counterLikes = {
+        likes:0,
+        count:num, 
+    }
+    counterLikes.likes++
+    console.log("likes clicked")++
     const likeLog = document.createElement("li"); 
-    likeLog.innerText = `${num} has been liked ${numLikes} times`;
+    likeLog.innerText = `${num} has been liked ${counterLikes.likes} times`;
+    likesList.innerHTML = "";
     likesList.appendChild(likeLog);
-    return numLikes; 
 }
 
 
